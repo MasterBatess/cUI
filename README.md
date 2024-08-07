@@ -1,6 +1,9 @@
+Beware! Besides name and email the following form also collects the user IP.
+
 Form can be accessed via
 
 https://script.google.com/macros/s/AKfycbxoG0OjgIqaQxRwCiMxoGrsJLOQMhG4rOHti7EKhQnVvemJuvRLqsorPEbi8_065JkO/exec
+
 
 Data can be viewed at
 
