@@ -4,17 +4,38 @@ function doGet(e) {
 
 function submitData(form) {
   try {
-    const spreadsheetId = '1_u9Wh7StJeydoyo9r6m8DEIPQEfV56a-vM8J3Z5vZAk';
-    const sheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName('Sheet1');
-    
-    if (!sheet) {
-      throw new Error('Sheet not found');
+    const ip = form.ip;
+    const country = getCountryFromIP(ip);
+
+    const spreadsheetId = PropertiesService.getScriptProperties().getProperty('spreadsheetId');
+    const apiKey = PropertiesService.getScriptProperties().getProperty('apiKey');
+
+    const mainSheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName('Sheet1');
+    const ipSheet = SpreadsheetApp.openById(spreadsheetId).getSheetByName('IPSheet');
+
+    if (!mainSheet) {
+      throw new Error('Main sheet not found');
     }
-    
-    sheet.appendRow([form.name, form.email]);
+    if (!ipSheet) {
+      throw new Error('IP sheet not found');
+    }
+
+    // Append data to main sheet (without IP)
+    mainSheet.appendRow([form.name, form.email, country]);
+
+    // Append data to IP sheet (with IP)
+    ipSheet.appendRow([form.name, form.email, country, ip]);
+
     return 'Data submitted successfully';
   } catch (e) {
     Logger.log('Error: ' + e.toString());
     throw e;
   }
+}
+
+function getCountryFromIP(ip) {
+  const apiKey = PropertiesService.getScriptProperties().getProperty('apiKey');
+  const response = UrlFetchApp.fetch(`https://api.ipgeolocation.io/ipgeo?apiKey=${apiKey}&ip=${ip}`);
+  const data = JSON.parse(response.getContentText());
+  return data.country_name;
 }
