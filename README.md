@@ -2,7 +2,7 @@ Beware! Besides name and email the following form also collects the user IP.
 
 Form can be accessed via
 
-https://script.google.com/macros/s/AKfycbzKBtvWtYq48bhnWvYaAF4P4US5cLLa6C6sN-o6XhDW0Qacmm9suPbo7n7Fh-6tcTcU/exec
+https://script.google.com/macros/s/AKfycbxrAeVkOIdUuist51wgn_IPzT09i2M4so2QHFlkQ8cG77J2k0rCN9i3vQlqcD_jPP6B/exec
 
 
 Data can be viewed at
