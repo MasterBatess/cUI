@@ -20,10 +20,8 @@ function submitData(form) {
       throw new Error('IP sheet not found');
     }
 
-    // Append data to main sheet (without IP)
     mainSheet.appendRow([form.name, form.email, country]);
 
-    // Append data to IP sheet (with IP)
     ipSheet.appendRow([form.name, form.email, country, ip]);
 
     return 'Data submitted successfully';
